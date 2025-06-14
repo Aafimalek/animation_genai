@@ -1,0 +1,6 @@
+streamlit>=1.28.0
+google-generativeai>=0.3.0
+manim>=0.17.0
+pathlib
+uuid
+dotenv
