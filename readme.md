@@ -4,17 +4,20 @@ A powerful AI-driven tool that generates educational animations using Google's G
 
 ## 🚀 Features
 
-- **AI-Powered Animation Generation**: Uses Google Gemini 2.5 Pro for highly accurate animation code generation
-- **Streamlit Web Interface**: User-friendly web interface with real-time preview
-- **3Blue1Brown Style**: Generates animations following the pedagogical approach of 3Blue1Brown
-- **Auto-Fix System**: Automatically fixes common Manim syntax errors for better compatibility
-- **Secure API Management**: Uses environment variables for API key security
-- **Script Editor**: View and edit generated scripts before re-rendering
-- **Download Support**: Download generated animations as MP4 files
+- **🤖 Advanced AI Generation**: Uses Google Gemini 2.5 Pro with enhanced system prompts for highly accurate animation code
+- **🔄 Intelligent Self-Correction**: Automatically detects and fixes Manim syntax errors with up to 5 correction attempts
+- **🎨 Streamlit Web Interface**: Modern, responsive web interface with beautiful cyan-themed UI
+- **📚 3Blue1Brown Style**: Generates animations following the pedagogical approach of 3Blue1Brown
+- **🔧 Auto-Fix System**: Automatically fixes common Manim syntax errors (deprecated methods, axes configuration, etc.)
+- **🔒 Secure API Management**: Uses environment variables for API key security
+- **📝 Script Editor**: View and edit generated scripts with syntax highlighting before re-rendering
+- **📥 Download Support**: Download generated animations as MP4 files
+- **⚙️ Configurable Settings**: Adjustable auto-fix options and correction attempt limits
+- **🎯 Real-time Error Analysis**: Detailed error analysis with specific suggestions for manual fixes
 
 ## 📋 Prerequisites
 
-- **Python 3.8 or higher**
+- **Python 3.10 or higher**
 - **Google AI Studio API key** ([Get one here](https://makersuite.google.com/app/apikey))
 - **FFmpeg** (for video rendering)
 
@@ -22,7 +25,7 @@ A powerful AI-driven tool that generates educational animations using Google's G
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/Aafimalek/animation_genai
    cd animation_genai
    ```
 
@@ -52,23 +55,30 @@ A powerful AI-driven tool that generates educational animations using Google's G
 2. **Open your browser**
    Navigate to `http://localhost:8501`
 
-3. **Generate animations**
+3. **Configure settings** (optional)
+   - **Auto-fix syntax errors**: Enabled by default
+   - **Max correction attempts**: Set between 1-5 (default: 3)
+
+4. **Generate animations**
    - Enter a description of the animation you want to create
    - Click "🎬 Generate Animation"
-   - Watch AI create your animation in real-time!
+   - Watch AI create your animation with automatic error correction!
    - Download the result as an MP4 file
 
 ## 📁 Project Structure
 
 ```
 animation_genai/
-├── app.py              # Main Streamlit application
-├── check.py           # Script to check available Gemini models
-├── requirements.txt   # Python dependencies
-├── .env              # Environment variables (create this)
-├── .gitignore        # Git ignore file
-├── README.md         # This file
-└── manim_work_*/     # Generated animation workspaces (auto-created)
+├── app.py                    # Main Streamlit application with self-correction
+├── check.py                 # Script to check available Gemini models
+├── requirements.txt         # Python dependencies
+├── .env                     # Environment variables (create this)
+├── .gitignore              # Git ignore file
+├── .streamlit/
+│   └── config.toml         # Streamlit UI theme configuration
+├── style.css               # Custom CSS styling (optional)
+├── README.md              
+└── manim_work_*/          # Generated animation workspaces (auto-created)
 ```
 
 ## 🔧 Configuration
@@ -78,6 +88,14 @@ animation_genai/
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `GOOGLE_API_KEY` | Your Google AI API key from AI Studio | Yes |
+
+### Streamlit Theme
+
+The app uses a beautiful dark theme with cyan accents configured in `.streamlit/config.toml`:
+- **Primary Color**: `#00D4FF` (Bright cyan for tech/animation feel)
+- **Background**: `#0C0E16` (Deep dark blue-black)
+- **Secondary Background**: `#1A1D29` (Dark blue-grey for containers)
+- **Text**: `#E8E9F3` (Soft white with blue tint)
 
 ### Model Configuration
 
@@ -91,114 +109,74 @@ python check.py
 
 Try these example prompts to get started:
 
-### Mathematics
+### 🔢 Mathematics
 - "Create an animation showing the Pythagorean theorem with a visual proof"
-- "Animate a sine wave transforming into a cosine wave"
-- "Show how the derivative of x squared equals 2x with visual explanation"
-- "Demonstrate the concept of limits approaching infinity"
+- "Animate a sine wave transforming into a cosine wave with equation display"
+- "Show how the derivative of x squared equals 2x with step-by-step visual explanation"
+- "Demonstrate the concept of limits approaching infinity with graphical representation"
 
-### Linear Algebra
-- "Visualize matrix multiplication with animated vectors"
-- "Show how eigenvectors behave under matrix transformation"
-- "Animate the process of solving a system of linear equations"
-
-### Calculus
-- "Create a visualization of integration as area under a curve"
-- "Show the relationship between a function and its derivative"
-- "Animate the concept of Taylor series expansion"
-
-### Physics
-- "Visualize wave interference patterns"
-- "Show projectile motion with velocity vectors"
-- "Animate simple harmonic motion"
 
 ## 🎨 Animation Features
 
 The generated animations include:
-- **Mathematical Expressions**: LaTeX-rendered formulas using MathTex
-- **Smooth Transitions**: Professional animations with proper timing
-- **Color Schemes**: Beautiful color palettes following 3Blue1Brown style
-- **Educational Structure**: Clear, pedagogical presentation of concepts
-- **Interactive Elements**: Dynamic visualizations that build understanding
 
-## 🛠️ Advanced Usage
+- **📐 Mathematical Expressions**: LaTeX-rendered formulas using MathTex
+- **🎬 Smooth Transitions**: Professional animations with proper timing and easing
+- **🎨 Color Schemes**: Beautiful color palettes following 3Blue1Brown aesthetic
+- **📚 Educational Structure**: Clear, pedagogical presentation of concepts
+- **🔄 Interactive Elements**: Dynamic visualizations that build understanding step-by-step
+- **⚡ Modern Syntax**: Uses latest Manim Community Edition v0.19.0+ features
 
-### Custom Script Editing
-1. Generate an animation using AI
-2. View the generated script in the expandable section
-3. Edit the script as needed
-4. Click "🔄 Re-render with Edited Script"
+### Self-Correction System
+The app includes an intelligent self-correction system:
 
-### Troubleshooting Common Issues
-The app provides detailed error messages and suggestions for common issues:
-- **Axes Configuration Errors**: Clear guidance on proper syntax
-- **Syntax Errors**: Automatic detection and fixing suggestions
-- **Graph Plotting Issues**: Modern syntax recommendations
+1. **First Attempt**: Generates script with enhanced prompts
+2. **Auto-Fix**: Applies common syntax corrections automatically
+3. **Error Analysis**: If rendering fails, analyzes the specific error type
+4. **AI Correction**: Uses AI to fix the identified issues
+5. **Multiple Attempts**: Retries up to 5 times with progressive improvements
 
+### Settings Configuration
+- **🔧 Auto-fix syntax errors**: Toggle automatic fixing of common issues
+- **🔄 Max correction attempts**: Set between 1-5 attempts for error correction
+- **📊 Real-time feedback**: View applied fixes and error analysis in real-time
 
-## 🆘 Troubleshooting
-
-### Common Issues
-
-1. **API Key Error**
+1. **Rendering Failures with Auto-Correction**
    ```
-   Error: Please enter your Gemini API key
+   All 3 attempts failed
    ```
-   - Ensure your `.env` file exists in the project root
-   - Check that `GOOGLE_API_KEY` is correctly set
-   - Verify your API key has the necessary permissions
-
-2. **Manim Installation Issues**
-   ```
-   Error: manim command not found
-   ```
-   - Install Manim: `pip install manim`
-   - Install FFmpeg (see installation section)
-   - Restart your terminal/command prompt
-
-3. **Import/Encoding Errors**
-   ```
-   UnicodeDecodeError or similar
-   ```
-   - The app includes automatic encoding handling
-   - Try running with administrator privileges on Windows
-   - Ensure your system supports UTF-8 encoding
-
-4. **Rendering Failures**
-   ```
-   Manim rendering failed
-   ```
-   - Check the detailed error in the expandable section
-   - Enable auto-fix for common syntax issues
-   - Try simpler prompts first to test your setup
+   **Solution**:
+   - Check detailed error in expandable section
+   - Try simpler prompts first
+   - Increase max attempts to 5
+   - Manually edit script using provided suggestions
 
 ### Getting Help
 
-If you encounter issues:
-1. Check the error details in the expandable "View Full Error Details" section
-2. Review the [Manim Documentation](https://docs.manim.community/)
-3. Check [Google AI Documentation](https://ai.google.dev/)
-4. Create an issue in this repository with:
-   - Your operating system
-   - Python version
-   - Full error message
+If you encounter persistent issues:
+
+1. **Check Error Details**: Use the expandable "View Full Error Details" section
+2. **Review Documentation**: 
+   - [Manim Documentation](https://docs.manim.community/)
+   - [Google AI Documentation](https://ai.google.dev/)
+3. **Create an Issue**: Include:
+   - Operating system and Python version
+   - Full error message from expandable section
    - The prompt you were trying to use
-
-## 🔄 Updates & Changelog
-
-### Version Features
-- **v1.0**: Initial release with Gemini 2.5 Pro integration
-- **Auto-fix System**: Intelligent syntax error correction
-- **Enhanced Error Handling**: Detailed error messages and suggestions
-- **Script Editor**: In-app script editing and re-rendering
+   - Auto-fix settings and attempt count
 
 ## 🙏 Acknowledgments
 
-- **[Manim Community](https://www.manim.community/)** - Amazing animation library
-- **[3Blue1Brown](https://www.3blue1brown.com/)** - Inspiration for educational animation style
-- **[Google AI](https://ai.google.dev/)** - Powerful Gemini AI models
-- **[Streamlit](https://streamlit.io/)** - Excellent web framework for rapid prototyping
+- **[Manim Community](https://www.manim.community/)** - Incredible animation library and documentation
+- **[3Blue1Brown](https://www.3blue1brown.com/)** - Inspiration for educational animation excellence
+- **[Google AI](https://ai.google.dev/)** - Powerful Gemini AI models and API
+- **[Streamlit](https://streamlit.io/)** - Excellent framework for rapid prototyping and beautiful UIs
+---
 
-**Happy Animating!** 🎬✨
+**🎬✨ Happy Animating!**
 
-*Create educational content that makes complex concepts simple and beautiful.*
+*Transform complex concepts into beautiful, understandable visual stories with the power of AI and mathematics.*
+
+[![Made with Streamlit](https://img.shields.io/badge/Made%20with-Streamlit-FF6B6B.svg)](https://streamlit.io/)
+[![Powered by Gemini](https://img.shields.io/badge/Powered%20by-Google%20Gemini-00D4FF.svg)](https://ai.google.dev/)
+[![Built with Manim](https://img.shields.io/badge/Built%20with-Manim-1A1D29.svg)](https://www.manim.community/)
