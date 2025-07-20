@@ -1,4 +1,6 @@
 build-essential
 pkg-config
 libcairo2-dev
+ffmpeg 
+libpango1.0-dev
 
