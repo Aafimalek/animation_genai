@@ -1,0 +1,9 @@
+[theme]
+# Enhanced color scheme for better visual appeal
+primaryColor = "#00D4FF"              # Bright cyan for animations/tech feel
+backgroundColor = "#0C0E16"           # Deeper dark blue-black
+secondaryBackgroundColor = "#1A1D29"  # Dark blue-grey for cards/containers
+textColor = "#E8E9F3"                 # Soft white with blue tint
+
+# Font configuration
+font = "sans serif"                   # Modern, clean typography
