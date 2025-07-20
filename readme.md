@@ -1,6 +1,7 @@
 # Animation GenAI 🎬✨
 
 A powerful AI-driven tool that generates educational animations using Google's Gemini AI and the Manim library. Create beautiful mathematical and educational animations in the style of 3Blue1Brown by simply describing what you want to animate!
+Live link :- https://animation-genai.streamlit.app/
 
 ## 🚀 Features
 
